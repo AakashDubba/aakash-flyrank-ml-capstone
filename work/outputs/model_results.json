@@ -1,0 +1,85 @@
+{
+  "author": "Aakash Dubba",
+  "lane": "Refresh / Content Opportunity Scoring",
+  "repository": "https://github.com/AakashDubba/aakash-flyrank-ml-capstone",
+  "total_rows": 30000,
+  "unique_clients": 32,
+  "train_rows": 27675,
+  "test_rows": 2325,
+  "holdout_client_count": 6,
+  "base_rate": 0.5420666666666667,
+  "model_results": {
+    "Heuristic Baseline": {
+      "ROC-AUC": 0.5920604066056323,
+      "PR-AUC": 0.43545234191656357,
+      "Precision@10": 0.3,
+      "Precision@20": 0.25,
+      "Precision@50": 0.18,
+      "Precision@100": 0.21,
+      "Accuracy": 0.589247311827957,
+      "Recall": 0.019801980198019802,
+      "F1": 0.03632694248234107,
+      "Brier": 0.24011597430312107
+    },
+    "Logistic Regression": {
+      "ROC-AUC": 0.7004655267786666,
+      "PR-AUC": 0.5227646822655194,
+      "Precision@10": 0.2,
+      "Precision@20": 0.35,
+      "Precision@50": 0.42,
+      "Precision@100": 0.45,
+      "Accuracy": 0.6606451612903226,
+      "Recall": 0.5665566556655666,
+      "F1": 0.5662451896646509,
+      "Brier": 0.21596171028481972
+    },
+    "Decision Tree": {
+      "ROC-AUC": 0.7415203737887913,
+      "PR-AUC": 0.5753189989001579,
+      "Precision@10": 0.8,
+      "Precision@20": 0.8,
+      "Precision@50": 0.68,
+      "Precision@100": 0.65,
+      "Accuracy": 0.6765591397849462,
+      "Recall": 0.7161716171617162,
+      "F1": 0.6338851022395326,
+      "Brier": 0.2000035817542605
+    },
+    "Random Forest": {
+      "ROC-AUC": 0.7511273019957363,
+      "PR-AUC": 0.6215419474959762,
+      "Precision@10": 0.7,
+      "Precision@20": 0.8,
+      "Precision@50": 0.76,
+      "Precision@100": 0.73,
+      "Accuracy": 0.6774193548387096,
+      "Recall": 0.7414741474147415,
+      "F1": 0.6425166825548141,
+      "Brier": 0.198159562671793
+    },
+    "Gradient Boosting": {
+      "ROC-AUC": 0.7781266120962379,
+      "PR-AUC": 0.6778261027959652,
+      "Precision@10": 0.8,
+      "Precision@20": 0.85,
+      "Precision@50": 0.82,
+      "Precision@100": 0.85,
+      "Accuracy": 0.68,
+      "Recall": 0.7546754675467546,
+      "F1": 0.6483931947069943,
+      "Brier": 0.19219002696313345
+    }
+  },
+  "top_features": {
+    "days_with_impressions": 0.1465755444123361,
+    "log_impressions_90d": 0.124545440448055,
+    "avg_position": 0.11437297468564668,
+    "content_age_days": 0.08700267469534213,
+    "char_count": 0.04459438507121914,
+    "age_tier_365+": 0.04192941178179313,
+    "log_clicks_90d": 0.037682350437999244,
+    "ctr": 0.03639225978608037,
+    "word_count": 0.03586624984847,
+    "scroll_rate": 0.03497739299153371
+  }
+}
