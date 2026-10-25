@@ -73,11 +73,17 @@ jobs:
               except Exception:
                   continue
               code = [c for c in nb.get("cells", []) if c.get("cell_type") == "code"]
-              src = sum(len("".join(c.get("source", []))) for c in code)
+              # Filter out starter comment lines to accurately isolate user-written code
+              user_code = [
+                  line for c in code for line in c.get("source", [])
+                  if line.strip() and not line.strip().startswith("# This cell is for CODE")
+                  and not line.strip().startswith("# Write your text answer")
+              ]
+              user_src = sum(len(line) for line in user_code)
               has_out = any(c.get("outputs") for c in code)
-              if code and src > 200 and not has_out:
+              if user_src > 0 and not has_out:
                   kind = "error" if final else "warning"
-                  print(f"::{kind} file={p}::{p} has filled code cells but no outputs - "
+                  print(f"::{kind} file={p}::{p} has filled code cells ({user_src} chars) but no outputs - "
                         "did Colab save an unrun copy? Runtime -> Run all, then save again.")
                   if final:
                       bad.append(p)

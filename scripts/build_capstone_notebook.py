@@ -36,7 +36,7 @@ def create_capstone_notebook():
 1. **The Question:** In enterprise organic search operations, editorial and SEO teams face thousands of decaying content URLs but lack principled, data-driven methods to identify which pages warrant high-effort content refresh versus monitoring or consolidation.
 2. **The Data:** Using the FlyRank ML Internship dataset comprising 30,000 pseudonymized content assets across 32 enterprise clients (with a 54.2% base decline rate), we evaluated observable search performance, query engagement, and content age signals without using titles, domains, or search queries.
 3. **The Method:** We established a strict group-aware validation design (client-holdout split holding out 20% of client portfolios, evaluating on 2,325 blind holdout assets) and benchmarked regularized linear, decision tree, and ensemble tree models against an interpretable multi-signal heuristic baseline while strictly enforcing zero target leakage.
-4. **Headline Result:** The Random Forest classifier demonstrated decisive ranking superiority on unseen enterprise clients, achieving a Precision@20 of 0.700 (a 4.67× lift over the baseline's 0.150) and a Precision@50 of 0.680 (a 2.83× lift over the baseline's 0.240), with an out-of-fold ROC-AUC of 0.747 and Average Precision (PR-AUC) of 0.610.
+4. **Headline Result:** The Random Forest classifier demonstrated decisive ranking superiority on unseen enterprise clients, achieving a Precision@20 of 0.800 (a 3.20× lift over the baseline's 0.250) and a Precision@50 of 0.760 (a 4.22× lift over the baseline's 0.180), with an out-of-fold ROC-AUC of 0.751 and Average Precision (PR-AUC) of 0.622.
 5. **Decision Support:** Blending model-predicted decline probability with verified traffic impact yields a prioritized editorial review queue with explainable reason codes, reducing manual auditing fatigue while focusing scarce writer capacity on reversible, high-yield organic assets."""))
 
     # Section 1: Question & Framing
@@ -529,10 +529,10 @@ print(f"Receipts successfully saved to {OUTPUTS_DIR / 'model_results.json'}")"""
    - Explain why standard K-Fold cross validation produces optimistic results due to client leakage.
    - Demonstrate our 20% Client-Holdout split (2,325 blind evaluation assets).
 3. **Minute 3: Benchmark Results (Model vs. Baseline)**
-   - Walk through the Precision@K table: Random Forest achieves **0.700 at K=20** (a 4.67× lift over the heuristic baseline of 0.150) and **0.680 at K=50**.
-   - Show the ROC curve (AUC 0.747) and PR-AUC curve (0.610 vs. 0.542 base rate).
+   - Walk through the Precision@K table: Random Forest achieves **0.800 at K=20** (a 3.20× lift over the heuristic baseline of 0.250) and **0.760 at K=50** (a 4.22× lift).
+   - Show the ROC curve (AUC 0.751) and PR-AUC curve (0.622 vs. 0.542 base rate).
 4. **Minute 4: Top Drivers of Content Decay**
-   - Reveal the primary signals: `days_with_impressions` (16.1%), `log_impressions_90d` (12.8%), and SERP position stability (`avg_position` 10.8%).
+   - Reveal the primary signals: `days_with_impressions` (14.66%), `log_impressions_90d` (12.45%), and SERP position stability (`avg_position` 11.44%).
 5. **Minute 5: Operational Deployment & Action Playbook**
    - Showcase the deployed web app and the prioritized editorial review queue with reason codes (`refresh_and_review_ctr`, `model_decline_risk`), turning predictions into immediate editorial sprint tasks.
 
@@ -544,8 +544,8 @@ print(f"Receipts successfully saved to {OUTPUTS_DIR / 'model_results.json'}")"""
 > Most teams rely on basic rules: *"Update anything older than 180 days with traffic."*
 > 
 > But when we benchmarked heuristic rules against a client-aware ML classifier on 30,000 enterprise search assets:
-> 📉 Hand-crafted rules hit only **15.0% Precision@20** on unseen enterprise clients.
-> 📈 An interpretable Random Forest classifier achieved **70.0% Precision@20**—a **4.67× lift** in spotting high-yield declining content before traffic collapses.
+> 📉 Hand-crafted rules hit only **25.0% Precision@20** and **18.0% Precision@50** on unseen enterprise clients.
+> 📈 An interpretable Random Forest classifier achieved **80.0% Precision@20** (3.20× lift) and **76.0% Precision@50** (a **4.22× lift**) in spotting high-yield declining content before traffic collapses.
 > 
 > Key technical takeaway: If you don't evaluate with a **group-aware client holdout split**, within-domain leakage will trick you into trusting overfitted models.
 > 
@@ -558,7 +558,7 @@ print(f"Receipts successfully saved to {OUTPUTS_DIR / 'model_results.json'}")"""
 ---
 
 ### 8.3 3-Sentence Employer-Facing Summary
-> "Engineered an end-to-end, privacy-compliant machine learning system on 30,000 enterprise search assets to prioritize high-value content refresh opportunities, outperforming traditional heuristic baselines by 4.67× on top-20 precision (70.0% vs. 15.0%) across an out-of-domain client-holdout split. Designed a leak-free signal pipeline incorporating search demand, impression continuity, and user engagement metrics without relying on proprietary keywords or URLs. Delivered an interactive, production-grade research paper and actionable editorial triage queue deployed publicly to GitHub Pages."
+> "Engineered an end-to-end, privacy-compliant machine learning system on 30,000 enterprise search assets to prioritize high-value content refresh opportunities, outperforming traditional heuristic baselines by 4.22× on top-50 precision (76.0% vs. 18.0%) and 3.20× on top-20 precision (80.0% vs. 25.0%) across an out-of-domain client-holdout split. Designed a leak-free signal pipeline incorporating search demand, impression continuity, and user engagement metrics without relying on proprietary keywords or URLs. Delivered an interactive, production-grade research paper and actionable editorial triage queue deployed publicly to GitHub Pages."
 
 ---
 
